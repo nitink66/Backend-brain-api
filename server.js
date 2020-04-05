@@ -24,7 +24,7 @@ app.use(cors());
 
 
 app.get('/',(req,res)=>{
-    res.json('it is workingasd');
+    res.json('it is working');
 })
 
 
