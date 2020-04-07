@@ -1,6 +1,7 @@
 const handleRegister= (req,res,db,bcrypt)=>{
     const {name , email , password} = req.body;
     if(!email || !name || !password){
+        alert("Inavalid CREDENTIALS")
       return res.status(400).json('incorrect credentials');
     }
     const hash = bcrypt.hashSync(password);
