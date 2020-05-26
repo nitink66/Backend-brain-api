@@ -3,6 +3,8 @@ const bodyparser = require('body-parser')
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs')
 const knex = require('knex')
+const formData = require('express-form-data');
+
 
 const register = require ('./controllers/register')
 const signin = require ('./controllers/signin')
@@ -21,6 +23,7 @@ const db = knex({
 const app = express();
 app.use(bodyparser.json());
 app.use(cors());
+app.use(formData.parse());
 
 
 app.get('/',(req,res)=>{
@@ -38,8 +41,10 @@ app.get('/profile/:id',(req,res) => {profile.handleProfileGet(req,res,db)})
 
 app.put('/image',(req,res)=> {image.handleImage(req,res,db)})  
 
-app.post('/imageurl',(req,res)=> {image.handleApiCall(req,res)})  
+app.post('/imageurl',(req,res)=> {image.handleApiCall(req,res)})
 
-app.listen(process.env.PORT||3000,()=>{
-    console.log(`listening to port ${process.env.PORT}`);
+app.post("/image-upload", image.handleImageUpload());
+
+app.listen(3000,()=>{
+    console.log(`listening to port 3000`);
 })
