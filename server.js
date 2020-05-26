@@ -45,6 +45,6 @@ app.post('/imageurl',(req,res)=> {image.handleApiCall(req,res)})
 
 app.post("/image-upload", image.handleImageUpload());
 
-app.listen(3000,()=>{
-    console.log(`listening to port 3000`);
+app.listen(process.env.PORT || 3000,()=>{
+    console.log(`listening to port ${PORT}`);
 })
